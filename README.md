@@ -1,4 +1,5 @@
 # MS_SQL_Server_Project
+I designed and built an end-to-end Enterprise Data Warehouse using MS SQL Server. I consolidated raw CRM and ERP datasets by building a 3-layer Medallion Architecture (Bronze, Silver, Gold) and transformed them into a performance-optimized Star Schema. Through this project, I gained deep hands-on experience in writing complex joins, crafting stored procedures, handling data quality validation, and designing analytical schemas
 
 Problem Statement
 
