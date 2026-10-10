@@ -11,30 +11,40 @@ As my business data grew across disparate source systems (CRM and ERP), it was s
 
     Absence of Standardized Analytics: There was no streamlined ETL process to clean, transform, and model the data for reliable business reporting.
 
-🎯 Project Requirements
+🏗️ Project Architecture & Solution Overview
 
-To solve these data challenges, I set out to build a modern analytics solution with the following specifications:
+To solve the challenges of fragmented enterprise data, I architected and built an end-to-end data warehouse and analytics pipeline using MS SQL Server, meeting the following specifications:
 
-    Multi-Source Ingestion: Ingest raw data from two distinct source systems (CRM and ERP CSV files).
+    Multi-Source Ingestion: Ingested raw data from two distinct source systems (CRM and ERP CSV files).
 
-    Data Cleansing & Quality: Resolve data quality issues, standardize formats, and normalize data prior to analysis.
+    Data Cleansing & Quality: Resolved data quality issues, standardized formats, and normalized data prior to analysis.
 
-    Modern Architecture Design: Build a scalable data warehouse using MS SQL Server following the Medallion Architecture (Bronze, Silver, Gold layers).
+    Modern Architecture Design: Built a scalable data warehouse following the Medallion Architecture (Bronze, Silver, Gold layers).
 
-    Dimensional Modeling: Develop a user-friendly Star Schema (fact and dimension tables) optimized for analytical reporting.
+    Dimensional Modeling: Developed a user-friendly Star Schema (fact and dimension tables) optimized for analytical reporting.
 
-    Business Insights: Deliver actionable SQL-based insights into customer behavior, product performance, and sales trends.
+    Business Insights: Delivered actionable SQL-based insights into customer behavior, product performance, and sales trends.
 
-💡 Solution
+📂 How I Implemented It (Repository Breakdown)
 
-To fulfill these requirements, I built an end-to-end data warehouse and analytics pipeline:
+To fulfill these requirements, I structured my project into a production-grade codebase:
 
-    Implemented a 3-Layer Medallion Architecture:
+    datasets/ (Source Layer):
 
-        Bronze Layer: I ingested raw CRM and ERP CSV data directly into MS SQL Server as-is to preserve source integrity.
+        "I started by ingesting raw CRM and ERP data from CSV files. This represents the raw entry point of data into the ecosystem."
 
-        Silver Layer: I developed SQL transformation scripts to clean, standardize, and fix data quality issues.
+    scripts/ (The ETL Engine):
 
-        Gold Layer: I modeled the clean data into a star schema (fact and dimension tables) tailored for high-performance reporting.
+        bronze/: "Here, I wrote scripts to load raw data as-is into SQL Server staging tables with zero modifications to maintain audit history."
 
-    Automated ETL & Quality Pipelines: I wrote modular SQL scripts for extracting, transforming, and loading data across all layers, complemented by automated SQL testing scripts to ensure data integrity.
+        silver/: "This is where the heavy lifting happens. I wrote T-SQL transformation scripts to handle string cleansing, standardizing formats, casting data types, and resolving null anomalies."
+
+        gold/: "I designed a high-performance Star Schema, structuring fact and dimension tables optimized specifically for fast analytical queries and business reporting."
+
+    tests/ (Data Quality & Validation):
+
+        "I built automated test scripts to validate referential integrity, check for orphan keys, and ensure no data loss happened across the pipeline transitions."
+
+    docs/ (Architecture & Governance):
+
+        "I maintained comprehensive documentation including data catalogs, architecture diagrams, and naming conventions to ensure proper data governance."
